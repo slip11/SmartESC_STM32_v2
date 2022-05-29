@@ -97,7 +97,7 @@ eButtonEvent getButtonEvent()
 	} else if (!button_down && double_pending && diff >= SINGLE_PRESS_MILLIS_MAX && diff <= LONG_PRESS_MILLIS_MAX) {
 		double_pending = false ;
 		button_event = LONG_PRESS ;
-	} else if (button_down && now - button_down_ts > LONG_PRESS_MILLIS_MAX) {
+	} else if (!button_down && double_pending && now - button_up_ts > LONG_PRESS_MILLIS_MAX) {
 		double_pending = false ;
 		button_event = VERY_LONG_PRESS ;
 	}
