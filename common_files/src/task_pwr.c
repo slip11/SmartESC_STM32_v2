@@ -154,7 +154,7 @@ void task_PWR(void *argument) {
 					m365_to_display.beep=1;
 					
 				 }else{
-					  app_adc_conf.voltage_start = off;
+					   appconf.app_adc_conf.voltage_start = off;
 					m365_to_display.beep=1;
 					
 				  }  
