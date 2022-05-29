@@ -38,7 +38,7 @@
 //Not a real Task... it's called from safety task. No delays allowed
 
 #define EXECUTION_SPEED		40			//every 40 ticks (20ms)
-bool OFF=0;
+float32 OFF;
 extern m365Answer m365_to_display;
 //extern const uint8_t m365_mode[3];
 uint32_t shutdown_limit = 0;
@@ -63,7 +63,7 @@ uint8_t buttonState() {
 eButtonEvent getButtonEvent()
 {
     static const uint32_t DOUBLE_GAP_MILLIS_MAX 	= 250;
-    static const uint32_t SINGLE_PRESS_MILLIS_MAX 	= 300;
+    static const uint32_t SINGLE_PRESS_MILLIS_MAX 	= 500;
     static const uint32_t LONG_PRESS_MILLIS_MAX 	= 2000;
 
     static uint32_t button_down_ts = 0 ;
@@ -147,16 +147,16 @@ void task_PWR(void *argument) {
 
 			  } break ;
 			  case VERY_LONG_PRESS :   {
-				  
-				//if(OFF){
-					  appconf.app_adc_conf.voltage_start+=4;
+				  OFF=appconf.app_adc_conf.voltage_start;
+				if( appconf.app_adc_conf.voltage_start!=3){
+					  appconf.app_adc_conf.voltage_start=3;
 					m365_to_display.beep=1;
-					!OFF;
-				/*  }else{
-					  appconf.app_adc_conf.voltage_start+=4;
+					
+				 }else{
+					  appconf.app_adc_conf.voltage_start=OFF;
 					m365_to_display.beep=1;
-					!OFF;
-				  }  */
+					
+				  }  
 
 				  
 			  } break ;
