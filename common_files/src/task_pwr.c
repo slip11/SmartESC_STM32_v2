@@ -130,7 +130,9 @@ void task_PWR(void *argument) {
 	if(main_loop_counter > 40){
 		main_loop_counter=0;
 		switch( getButtonEvent() ){
-			  case NO_PRESS : break ;
+			  case NO_PRESS : {
+			  
+			  }break ;
 			  case SINGLE_PRESS : {
 				  m365_to_display.light = !m365_to_display.light;
 				  if(m365_to_display.light){
@@ -146,15 +148,15 @@ void task_PWR(void *argument) {
 			  } break ;
 			  case VERY_LONG_PRESS :   {
 				  
-				if(OFF){
-					  appconf.app_adc_conf.voltage_start-=3;
+				//if(OFF){
+					  appconf.app_adc_conf.voltage_start+=4;
 					m365_to_display.beep=1;
 					!OFF;
-				  }else{
-					  appconf.app_adc_conf.voltage_start+=3;
+				/*  }else{
+					  appconf.app_adc_conf.voltage_start+=4;
 					m365_to_display.beep=1;
 					!OFF;
-				  }  
+				  }  */
 
 				  
 			  } break ;
