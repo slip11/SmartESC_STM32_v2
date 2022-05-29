@@ -147,10 +147,10 @@ void task_PWR(void *argument) {
 			  case VERY_LONG_PRESS :   {
 				  
 				if(appconf.app_adc_conf.voltage_start>=3){
-					  appconf.app_adc_conf.voltage_start+=3;
+					  appconf.app_adc_conf.voltage_start-=3;
 					m365_to_display.beep=1;
 				  }else{
-					  appconf.app_adc_conf.voltage_start-=3;
+					  appconf.app_adc_conf.voltage_start+=3;
 					m365_to_display.beep=1;
 				  }  
 
