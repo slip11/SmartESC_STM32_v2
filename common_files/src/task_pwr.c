@@ -38,7 +38,7 @@
 //Not a real Task... it's called from safety task. No delays allowed
 
 #define EXECUTION_SPEED		40			//every 40 ticks (20ms)
-float32 OFF;
+
 extern m365Answer m365_to_display;
 //extern const uint8_t m365_mode[3];
 uint32_t shutdown_limit = 0;
@@ -147,13 +147,13 @@ void task_PWR(void *argument) {
 
 			  } break ;
 			  case VERY_LONG_PRESS :   {
-				  OFF=appconf.app_adc_conf.voltage_start;
+				  
 				if( appconf.app_adc_conf.voltage_start!=3){
 					  appconf.app_adc_conf.voltage_start=3;
 					m365_to_display.beep=1;
 					
 				 }else{
-					  appconf.app_adc_conf.voltage_start=OFF;
+					  conf->app_adc_conf.voltage_start = buffer_get_float32_auto(buffer, &ind);;
 					m365_to_display.beep=1;
 					
 				  }  
