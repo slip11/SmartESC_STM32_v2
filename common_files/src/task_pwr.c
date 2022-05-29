@@ -64,7 +64,7 @@ eButtonEvent getButtonEvent()
 {
     static const uint32_t DOUBLE_GAP_MILLIS_MAX 	= 250;
     static const uint32_t SINGLE_PRESS_MILLIS_MAX 	= 300;
-    static const uint32_t LONG_PRESS_MILLIS_MAX 	= 5000;
+    static const uint32_t LONG_PRESS_MILLIS_MAX 	= 2000;
 
     static uint32_t button_down_ts = 0 ;
     static uint32_t button_up_ts = 0 ;
@@ -146,10 +146,12 @@ void task_PWR(void *argument) {
 			  } break ;
 			  case VERY_LONG_PRESS :   {
 				  
-				if(appconf.app_adc_conf.voltage_start==3){
-					  appconf.app_adc_conf.voltage_start=0;
+				if(appconf.app_adc_conf.voltage_start>=3){
+					  appconf.app_adc_conf.voltage_start+=3;
+					m365_to_display.beep=1;
 				  }else{
-					  appconf.app_adc_conf.voltage_start=3;
+					  appconf.app_adc_conf.voltage_start-=3;
+					m365_to_display.beep=1;
 				  }  
 
 				  
