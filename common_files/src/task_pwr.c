@@ -145,7 +145,14 @@ void task_PWR(void *argument) {
 
 			  } break ;
 			  case VERY_LONG_PRESS :   {
-appconf.app_adc_conf.voltage_start=3;
+				  
+				if(appconf.app_adc_conf.voltage_start==3){
+					  appconf.app_adc_conf.voltage_start=0;
+				  }else{
+					  appconf.app_adc_conf.voltage_start=3;
+				  }  
+
+				  
 			  } break ;
 			  case DOUBLE_PRESS : {
 				  uint32_t kmh=0;
