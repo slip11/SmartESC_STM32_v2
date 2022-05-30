@@ -97,7 +97,7 @@ eButtonEvent getButtonEvent()
 	} else if (!button_down && double_pending && diff >= SINGLE_PRESS_MILLIS_MAX && diff <= LONG_PRESS_MILLIS_MAX) {
 		double_pending = false ;
 		button_event = LONG_PRESS ;
-	} else if (button_down && double_pending && now - button_down_ts > LONG_PRESS_MILLIS_MAX) {
+	} else if (button_down && /*double_pending &&*/ now - button_down_ts > LONG_PRESS_MILLIS_MAX) {
 		double_pending = false ;
 		button_event = VERY_LONG_PRESS ;
 	}
@@ -130,9 +130,9 @@ void task_PWR(void *argument) {
 	if(main_loop_counter > 40){
 		main_loop_counter=0;
 		switch( getButtonEvent() ){
-			  case NO_PRESS : {
+			  case NO_PRESS :
 			  
-			  }break ;
+			break ;
 			  case SINGLE_PRESS : {
 				  m365_to_display.light = !m365_to_display.light;
 				  if(m365_to_display.light){
